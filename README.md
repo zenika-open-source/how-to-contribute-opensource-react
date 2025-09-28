@@ -1,2 +1,5 @@
-# how-to-contribute-opensource-react
-Example project to help people to contribute on an opensource project (React version)
+# Firebase Studio
+
+This is a NextJS starter in Firebase Studio.
+
+To get started, take a look at src/app/page.tsx.
