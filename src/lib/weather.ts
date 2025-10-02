@@ -13,10 +13,12 @@ export async function getWeatherForCities(cities: City[], unit: 'celsius' | 'fah
   const lats = cities.map(c => c.latitude.toFixed(2)).join(',');
   const lons = cities.map(c => c.longitude.toFixed(2)).join(',');
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}&current=temperature_2m,relative_humidity_2m,is_day,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=${unit}&wind_speed_unit=mph&timezone=auto&forecast_days=8`;
-
+console.log(url);
   try {
     const response = await fetch(url, {
-      next: { revalidate: 60 * 10 }, // Revalidate every 10 minutes
+      
+      next: { revalidate: 60 * 10 }, // Revalidate every 10 minute
+      
     });
 
     if (!response.ok) {
