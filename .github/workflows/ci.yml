@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev # Specify your main branches here
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # Specify your Node.js version
+
+    - name: Install dependencies
+      run: npm install
+      # or, if you're using yarn, replace with
+      # run: yarn install
+
+    - name: Run lint
+      run: npm run lint
+      # or, for yarn
+      # run: yarn lint
+
+    - name: Run tests
+      run: npm test
+      # or, for yarn
+      # run: yarn test
+      
+    - name: Build the project
+      run: npm run build
+      # or, for yarn
+      # run: yarn build
+
+    - name: Deploy (optional)
+      run: npm run deploy
+      # You can add deployment scripts if needed
