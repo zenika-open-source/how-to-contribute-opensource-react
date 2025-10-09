@@ -1,5 +1,6 @@
 {
-  "name": "nextn",
+
+  "name": "weather-contribution-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
