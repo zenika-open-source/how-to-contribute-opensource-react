@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Search, Pin } from 'lucide-react';
@@ -35,7 +35,7 @@ export default function WeatherDashboard({ initialCitiesWithWeather }: WeatherDa
   const [pinnedCityIds, setPinnedCityIds] = useState<number[]>([]);
   const [selectedCity, setSelectedCity] = useState<CityWithWeather | null>(null);
 
-  const router = useRouter();
+  
   const { toast } = useToast();
 
   useEffect(() => {
@@ -59,10 +59,11 @@ export default function WeatherDashboard({ initialCitiesWithWeather }: WeatherDa
   
   useEffect(() => {
     const interval = setInterval(() => {
-      router.refresh();
+      // Auto-refresh logic can be implemented here if needed
+      window.location.reload();
     }, 5 * 60 * 1000); // 5 minutes
     return () => clearInterval(interval);
-  }, [router]);
+  }, []);
 
   const togglePin = (cityId: number) => {
     const newPinnedIds = pinnedCityIds.includes(cityId)
