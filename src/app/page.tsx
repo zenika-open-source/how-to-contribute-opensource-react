@@ -1,13 +1,13 @@
 import citiesData from '@/lib/cities.json';
 import { getWeatherForCities } from '@/lib/weather';
 import WeatherDashboard from '@/components/weather-dashboard';
-import type { City, WeatherData, CityWithWeather } from '@/types';
+import type { City, CityWithWeather } from '@/types';
 
 async function getInitialData(): Promise<CityWithWeather[]> {
   const cities = citiesData as City[];
   try {
     const weatherDataResults = await getWeatherForCities(cities);
-    
+
     const citiesWithWeather = cities.map((city, index) => {
       const weather = weatherDataResults[index] || null;
       return {
@@ -15,7 +15,7 @@ async function getInitialData(): Promise<CityWithWeather[]> {
         weather,
       };
     });
-    
+
     return citiesWithWeather;
   } catch (error) {
     console.error("Failed to fetch initial weather data:", error);
